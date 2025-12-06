@@ -1,83 +1,122 @@
-# CYMATICA | Generative Audio Engine
-
+    
 <div align="center">
-  <p><strong>A Dual-Core, Real-Time Audio Visualization Intelligence.</strong></p>
-  <p>
-    <a href="#-features">Features</a> •
-    <a href="#-how-it-works">How It Works</a> •
-    <a href="#-quick-start">Quick Start</a> •
-    <a href="#-technologies">Technologies</a>
-  </p>
+
+# ❖ C Y M A T I C A
+### Generative Audio Intelligence Engine
+
+![Three.js](https://img.shields.io/badge/Three.js-black?style=for-the-badge&logo=three.js&logoColor=white)
+![WebGL](https://img.shields.io/badge/WebGL-2.0-00ffcc?style=for-the-badge&logo=webgl&logoColor=black)
+![GLSL](https://img.shields.io/badge/GLSL-Shaders-ff00ff?style=for-the-badge&logo=opengl&logoColor=white)
+[![Download](https://img.shields.io/badge/Download-Source_Code-red?style=for-the-badge&logo=github)](https://github.com/aayushmanmk/cymatica/archive/refs/heads/main.zip)
+
+<p align="center">
+  <br>
+  <strong>A Synaesthetic Dual-Core Visualization System.</strong><br>
+  Cymatica extracts audio data in real-time to drive a procedural, living 3D world.
+  <br>
+</p>
+
+[✨ Features](#-features) •
+[🧠 Architecture](#-architecture) •
+[🚀 Quick Start](#-quick-start) •
+[💾 Download](#-quick-start)
+
 </div>
 
 ---
 
-## 📸 Screenshots
+## 📸 Visuals
 
-<img width="2560" height="1440" alt="{EFB941B7-77D8-4BE5-976C-420A1ACFCEAA}" src="https://github.com/user-attachments/assets/9ba1a17f-3f08-4ab3-a280-f6f797cbcd2a" />
+<table align="center">
+  <tr>
+    <td align="center"><img src="https://github.com/user-attachments/assets/9ba1a17f-3f08-4ab3-a280-f6f797cbcd2a" width="100%" /></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/facf07c4-15a0-4013-96ba-0e933b10175d" width="100%" /></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://github.com/user-attachments/assets/cbd1011c-9872-491a-b48f-e847345d1799" width="100%" /></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/7cc07ab5-14aa-48a4-b0d8-e8400296b341" width="100%" /></td>
+  </tr>
+</table>
 
-<img width="2560" height="1440" alt="{31311E81-0470-4AC8-BF5F-0A6AE26B2A1E}" src="https://github.com/user-attachments/assets/facf07c4-15a0-4013-96ba-0e933b10175d" />
+---
 
-<img width="2560" height="1440" alt="{F53E0D27-D8C1-4A36-BDCB-2E7AC8AFC5DC}" src="https://github.com/user-attachments/assets/cbd1011c-9872-491a-b48f-e847345d1799" />
+## 🔮 The Experience
 
-<img width="2560" height="1440" alt="{78762B01-E06D-414A-B903-B9E7CD22ED12}" src="https://github.com/user-attachments/assets/7cc07ab5-14aa-48a4-b0d8-e8400296b341" />
-
-
-## 🔮 The Project
-
-**Cymatica** is not just a standard spectrum analyzer; it is a synaesthetic experience. It leverages the Web Audio API to perform real-time **Dual-Core FFT analysis**, extracting frequency data to drive a procedural 3D world.
-
-The core visual is a **GLSL Vertex Shader** that physically displaces the geometry of a mesh based on the bass response, while high-frequency data drives the color palette and particle acceleration of the surrounding starfield.
+**Cymatica** leverages the Web Audio API to perform real-time **Dual-Core FFT analysis**. The core visual is a GLSL Vertex Shader that physically displaces the geometry of a mesh based on the bass response, while high-frequency data drives the color palette and particle acceleration of the surrounding starfield.
 
 ## ⚡ Features
 
-*   **Dual-Core Audio Engine:** Utilizes parallel processing to achieve both instant rhythmic response and high-fidelity texture analysis simultaneously.
-*   **Zero-Latency Physics:** A dedicated high-speed processor captures drum hits instantly, ensuring the visuals never lag behind the beat.
-*   **Procedural Shaders:** Custom GLSL code handles vertex displacement using Perlin Noise algorithms directly on the GPU.
-*   **Post-Processing Pipeline:** Features Unreal Engine-style Bloom and Glow effects for a neon-cyberpunk aesthetic.
-*   **Reactive Particle System:** A surrounding debris field that expands and shifts color based on track intensity.
-*   **Zero Dependencies:** Runs entirely client-side in a single HTML file via CDN imports.
+| Feature | Description |
+| :--- | :--- |
+| **🏎️ Dual-Core Engine** | Utilizes parallel processing to achieve both **instant rhythmic response** (Zero Latency) and **high-fidelity texture analysis** simultaneously. |
+| **🌌 Procedural Shaders** | Custom GLSL code handles vertex displacement using Perlin Noise algorithms directly on the GPU. |
+| **✨ Post-Processing** | Features Unreal Engine-style Bloom, Chromatic Aberration, and Glow effects for a neon-cyberpunk aesthetic. |
+| **💥 Reactive Physics** | A surrounding debris field that expands, rotates, and shifts color based on track intensity. |
+| **📦 Zero Dependencies** | Runs entirely client-side in a single HTML file via CDN imports. No Node.js required. |
 
-## 🧠 How It Works
+---
 
-Unlike traditional visualizers that trade speed for detail, Cymatica runs two analysis engines in parallel:
+## 🧠 Architecture
 
-1.  **Audio Ingestion:** The browser creates an `AudioContext` and splits the source stream into two parallel `AnalyserNodes`.
-2.  **Parallel Signal Processing:** 
-    *   **Rhythm Core (512 FFT):** Analyzes audio in tiny chunks (~10ms) to detect immediate transients (Kicks/Snares). This data drives the *physical scale* and "punch" of the sphere.
-    *   **Texture Core (32,768 FFT):** Analyzes audio in massive chunks (~700ms) to capture high-resolution frequency data. This drives the *surface distortion*, liquid waves, and color shifting.
-3.  **Visual Synthesis:** The data from both cores is normalized and passed into the GLSL shader as uniforms (`uBass` vs `uHighs`).
-4.  **Render Loop:** Three.js updates the scene and the `EffectComposer` applies the bloom pass before drawing to the canvas.
+Unlike traditional visualizers that trade speed for detail, Cymatica runs two analysis engines in parallel.
 
-## 🚀 Quick Start
+```mermaid
+graph TD
+    A[Audio Source] --> B{Signal Splitter}
+    B -->|Fast Path| C[Rhythm Core]
+    B -->|Detail Path| D[Texture Core]
+    
+    C -->|FFT 512| E[Transient Data]
+    D -->|FFT 32,768| F[Harmonic Data]
+    
+    E -->|Drive| G[Physical Physics]
+    F -->|Drive| H[Liquid Shader & Color]
+    
+    G --> I[Final Composition]
+    H --> I
+    I --> J((Render Loop))
+
+  
+
+    Rhythm Core (512 FFT): Analyzes audio in tiny chunks (~10ms) to detect immediate transients (Kicks/Snares). Drives the punch.
+
+    Texture Core (32,768 FFT): Analyzes audio in massive chunks (~700ms) to capture high-resolution frequency data. Drives the distortion.
+```
+🚀 Quick Start
 
 This project requires no build steps, no Node.js, and no installation.
+1. Download
 
-1.  **Clone the repository** (or download the source):
-    ```bash
-    git clone https://github.com/aayushmanmk/cymatica.git
-    ```
-2.  **Open the file:**
-    Simply double-click one of the HTML files to open it in any modern web browser (Chrome, Firefox, Edge, Safari).
-    *   `Cymatica.html` - The pure visualizer experience.
-    *   `Cymatica With Seekbar.html` - Includes UI controls for playback and seeking.
-3.  **Initialize:**
-    Click the **"Initialize System"** button and select an audio file (MP3, WAV, FLAC).
+Click here to download the source code (ZIP) or clone via terminal:
+code Bash
 
-> **Note:** For the best experience, use a high-quality FLAC or WAV file with a strong beat. The engine is optimized to visualize the contrast between deep sub-bass and crisp high-hats.
+    
+git clone https://github.com/aayushmanmk/cymatica.git
 
-## 💻 Technologies
+  
 
-*   **[Three.js](https://threejs.org/)**: 3D Rendering Engine.
-*   **WebGL 2.0**: Low-level graphics API.
-*   **GLSL**: OpenGL Shading Language for custom materials.
-*   **Web Audio API**: For high-fidelity, dual-channel audio processing.
+2. Run
 
+Simply double-click one of the HTML files to open it in any modern web browser (Chrome, Firefox, Edge, Safari).
+
+    Cymatica.html — The pure visualizer experience.
+
+    Cymatica With Seekbar.html — Includes UI controls for playback and seeking.
+
+3. Initialize
+
+Click the "Initialize System" button and upload an audio file.
+
+    [!TIP]
+    Pro Tip: For the best experience, use a high-quality FLAC or WAV file with a strong beat. The engine is optimized to visualize the contrast between deep sub-bass and crisp high-hats.
+
+💻 Technologies
 <div align="center">
-  <br />
-  <p><i>Crafted with code and frequencies.</i></p>
-  <p>Code by <a href="https://github.com/aayushmanmk">aayushmanmk</a></p>
+Three.js	WebGL 2.0	GLSL	Web Audio API
+3D Rendering Engine	Graphics API	Shader Language	Signal Processing
 </div>
-
-
-
+<br />
+<div align="center">
+<p><i>Crafted with code and frequencies.</i></p>
+<sub>Code by <a href="https://github.com/aayushmanmk">aayushmanmk</a></sub>
+</div>
