@@ -25,6 +25,16 @@
 
 <br />
 
+## 📸 Screenshots
+
+<img width="2560" height="1440" alt="{EFB941B7-77D8-4BE5-976C-420A1ACFCEAA}" src="https://github.com/user-attachments/assets/9ba1a17f-3f08-4ab3-a280-f6f797cbcd2a" />
+
+<img width="2560" height="1440" alt="{31311E81-0470-4AC8-BF5F-0A6AE26B2A1E}" src="https://github.com/user-attachments/assets/facf07c4-15a0-4013-96ba-0e933b10175d" />
+
+<img width="2560" height="1440" alt="{F53E0D27-D8C1-4A36-BDCB-2E7AC8AFC5DC}" src="https://github.com/user-attachments/assets/cbd1011c-9872-491a-b48f-e847345d1799" />
+
+![Uploading {78762B01-E06D-414A-B903-B9E7CD22ED12}.png…]()
+
 ## 🔮 The Project
 
 **Cymatica** is not just a standard spectrum analyzer; it is a synaesthetic experience. It leverages the Web Audio API to perform real-time Fast Fourier Transform (FFT) analysis, extracting frequency data to drive a procedural 3D world.
