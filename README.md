@@ -70,7 +70,7 @@ This project requires no build steps, no Node.js, and no installation.
 3.  **Initialize:**
     Click the **"Initialize System"** button and select an audio file (MP3, WAV, FLAC).
 
-> **Note:** For the best experience, use a track with a strong beat or heavy dynamic range.
+> **Note:** For the best experience, use a track with a strong beat or heavy dynamic range. Also there are two versions, one with the seekbar and the one without the seekbar.
 
 ## 💻 Technologies
 
