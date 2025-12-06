@@ -118,4 +118,3 @@ Three.js	WebGL 2.0	GLSL	Web Audio API
 <p><i>Crafted with code and frequencies.</i></p>
 <sub>Code by <a href="https://github.com/aayushmanmk">aayushmanmk</a></sub>
 </div>
-```
