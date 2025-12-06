@@ -33,7 +33,7 @@
 
 <img width="2560" height="1440" alt="{F53E0D27-D8C1-4A36-BDCB-2E7AC8AFC5DC}" src="https://github.com/user-attachments/assets/cbd1011c-9872-491a-b48f-e847345d1799" />
 
-![Uploading {78762B01-E06D-414A-B903-B9E7CD22ED12}.png…]()
+<img width="2560" height="1440" alt="{78762B01-E06D-414A-B903-B9E7CD22ED12}" src="https://github.com/user-attachments/assets/7cc07ab5-14aa-48a4-b0d8-e8400296b341" />
 
 ## 🔮 The Project
 
