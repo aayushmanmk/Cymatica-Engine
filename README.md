@@ -18,8 +18,7 @@
 
   <br />
 
-  <!-- REPLACE THE LINK BELOW WITH YOUR OWN SCREENSHOT AFTER YOU RUN THE PROJECT -->
-  <img src="./screenshot.png" alt="Cymatica Visualizer Demo" width="100%" style="border-radius: 10px; box-shadow: 0 0 20px rgba(0,255,204,0.2);">
+
 
 </div>
 
