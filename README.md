@@ -1,8 +1,4 @@
-code
-Markdown
-download
-content_copy
-expand_less
+    
 <div align="center">
 
 # ❖ C Y M A T I C A
@@ -80,48 +76,46 @@ graph TD
     H --> I
     I --> J((Render Loop))
 
-Rhythm Core (512 FFT): Analyzes audio in tiny chunks (~10ms) to detect immediate transients (Kicks/Snares). Drives the punch.
-
-Texture Core (32,768 FFT): Analyzes audio in massive chunks (~700ms) to capture high-resolution frequency data. Drives the distortion.
+```  
+``
+    Rhythm Core (512 FFT): Analyzes audio in tiny chunks (~10ms) to detect immediate transients (Kicks/Snares). Drives the punch.
+`
+    Texture Core (32,768 FFT): Analyzes audio in massive chunks (~700ms) to capture high-resolution frequency data. Drives the distortion.
 
 🚀 Quick Start
 
 This project requires no build steps, no Node.js, and no installation.
-
 1. Download
 
 Click here to download the source code (ZIP) or clone via terminal:
+```code Bash
 
-code
-Bash
-download
-content_copy
-expand_less
+    
 git clone https://github.com/aayushmanmk/cymatica.git
+```
+  
+
 2. Run
 
 Simply double-click one of the HTML files to open it in any modern web browser (Chrome, Firefox, Edge, Safari).
 
-Cymatica.html — The pure visualizer experience.
+    Cymatica.html — The pure visualizer experience.
 
-Cymatica With Seekbar.html — Includes UI controls for playback and seeking.
+    Cymatica With Seekbar.html — Includes UI controls for playback and seeking.
 
 3. Initialize
 
 Click the "Initialize System" button and upload an audio file.
 
-[!TIP]
-Pro Tip: For the best experience, use a high-quality FLAC or WAV file with a strong beat. The engine is optimized to visualize the contrast between deep sub-bass and crisp high-hats.
+    [!TIP]
+    Pro Tip: For the best experience, use a high-quality FLAC or WAV file with a strong beat. The engine is optimized to visualize the contrast between deep sub-bass and crisp high-hats.
 
 💻 Technologies
 <div align="center">
-
 Three.js	WebGL 2.0	GLSL	Web Audio API
 3D Rendering Engine	Graphics API	Shader Language	Signal Processing
 </div>
-
 <br />
-
 <div align="center">
 <p><i>Crafted with code and frequencies.</i></p>
 <sub>Code by <a href="https://github.com/aayushmanmk">aayushmanmk</a></sub>
