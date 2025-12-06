@@ -51,7 +51,7 @@ The core visual is a **GLSL Vertex Shader** that physically displaces the geomet
 ## 🧠 How It Works
 
 1.  **Audio Ingestion:** The browser creates an `AudioContext` and routes the file stream through an `AnalyserNode`.
-2.  **Frequency Binning:** The `getByteFrequencyData` method fills a `Uint8Array` with 2048 frequency bins.
+2.  **Frequency Binning:** The `getByteFrequencyData` method fills a `Uint8Array` with 32768 frequency bins.
 3.  **Signal Processing:** 
     *   *Low Range (20-150Hz):* Drives the "spikes" and physical distortion of the core sphere.
     *   *High Range (2k-15kHz):* Drives the chromatic aberration and particle speed.
