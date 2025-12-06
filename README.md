@@ -59,13 +59,14 @@
 
 Unlike traditional visualizers that trade speed for detail, Cymatica runs two analysis engines in parallel.
 
-graph LR
+```mermaid
+graph TD
     A[Audio Source] --> B{Signal Splitter}
     B -->|Fast Path| C[Rhythm Core]
     B -->|Detail Path| D[Texture Core]
     
     C -->|FFT 512| E[Transient Data]
-    D -->|FFT 32k| F[Harmonic Data]
+    D -->|FFT 32768| F[Harmonic Data]
     
     E -->|Drive| G[Physical Physics]
     F -->|Drive| H[Liquid Shader]
@@ -73,6 +74,7 @@ graph LR
     G --> I[Composition]
     H --> I
     I --> J((Render Loop))
+```
 
 1.  **Rhythm Core (512 FFT):** Analyzes audio in tiny chunks (~10ms) to detect immediate transients (Kicks/Snares). Drives the *punch*.
 2.  **Texture Core (32,768 FFT):** Analyzes audio in massive chunks (~700ms) to capture high-resolution frequency data. Drives the *distortion*.
