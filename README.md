@@ -76,10 +76,10 @@ graph TD
     H --> I
     I --> J((Render Loop))
 
-```  
-``
+```
+
     Rhythm Core (512 FFT): Analyzes audio in tiny chunks (~10ms) to detect immediate transients (Kicks/Snares). Drives the punch.
-`
+
     Texture Core (32,768 FFT): Analyzes audio in massive chunks (~700ms) to capture high-resolution frequency data. Drives the distortion.
 
 🚀 Quick Start
@@ -88,9 +88,7 @@ This project requires no build steps, no Node.js, and no installation.
 1. Download
 
 Click here to download the source code (ZIP) or clone via terminal:
-```code Bash
-
-    
+```code Bash 
 git clone https://github.com/aayushmanmk/cymatica.git
 ```
   
