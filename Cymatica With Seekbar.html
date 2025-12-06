@@ -97,6 +97,30 @@
             cursor: pointer;
         }
 
+        /* --- CREDITS SECTION --- */
+        #credits {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 15;
+        }
+
+        #credits a {
+            color: #00ffcc;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        #credits a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+
         #hud {
             position: absolute;
             bottom: 30px;
@@ -286,6 +310,11 @@
             <button class="btn">Initialize System / Upload Audio</button>
             <input type="file" id="audio-input" accept="audio/*">
         </div>
+
+        <!-- CREDITS SECTION -->
+        <div id="credits">
+            Code by <a href="https://github.com/aayushmanmk" target="_blank">aayushmanmk</a>
+        </div>
     </div>
 
     <div id="hud">
@@ -346,7 +375,7 @@
         let uniforms; 
         let particles, particleGeo;
         let isAudioPlaying = false;
-        let isDragging = false; // Flag to fix seeking jitter
+        let isDragging = false; 
         let audioElement = null; 
         const clock = new THREE.Clock();
 
