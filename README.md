@@ -84,7 +84,7 @@ graph LR
 This project requires **no build steps**, **no Node.js**, and **no installation**.
 
 ### 1. Download
-[**Click here to download the source code (ZIP)**](https://github.com/aayushmanmk/cymatica/archive/refs/heads/main.zip) or clone via terminal:
+[**Click here to download the source code (ZIP)**](https://github.com/aayushmanmk/Cymatica-Engine/archive/HEAD.zip) or clone via terminal:
 ```bash
 git clone https://github.com/aayushmanmk/cymatica.git
 ```
