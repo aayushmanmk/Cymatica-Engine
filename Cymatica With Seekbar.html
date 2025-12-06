@@ -346,7 +346,8 @@
         let uniforms; 
         let particles, particleGeo;
         let isAudioPlaying = false;
-        let audioElement = null; // Store the HTML Audio Element globally
+        let isDragging = false; // Flag to fix seeking jitter
+        let audioElement = null; 
         const clock = new THREE.Clock();
 
         // --- DOM ELEMENTS FOR CONTROLS ---
@@ -367,7 +368,6 @@
             varying float vDisplacement;
             varying vec3 vNormal;
 
-            // Classic Perlin Noise function
             vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
             vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
             vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
@@ -531,7 +531,7 @@
             // UI Transitions
             document.getElementById('ui').classList.add('fade-out');
             document.getElementById('hud').style.opacity = 1;
-            controlDeck.style.opacity = 1; // Show Control Deck
+            controlDeck.style.opacity = 1; 
             
             trackNameEl.innerText = "TRACK: " + file.name.toUpperCase();
 
@@ -541,15 +541,51 @@
                 audioElement.src = "";
             }
 
-            // Init Audio
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            // Init Audio Context (Reuse or Create)
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            } else if (audioContext.state === 'suspended') {
+                await audioContext.resume();
+            }
+
             audioElement = new Audio();
-            audioElement.src = URL.createObjectURL(file);
             audioElement.crossOrigin = "anonymous";
             
-            await audioElement.play();
-            isAudioPlaying = true;
-            playPauseBtn.innerHTML = "❚❚"; // Pause icon
+            // --- ATTACH LISTENERS BEFORE LOADING SRC/PLAYING ---
+            
+            // 1. Loaded Metadata (Duration)
+            audioElement.addEventListener('loadedmetadata', () => {
+                seekbar.max = audioElement.duration;
+                totalDurationEl.innerText = formatTime(audioElement.duration);
+            });
+
+            // 2. Time Update
+            audioElement.addEventListener('timeupdate', () => {
+                // If dragging, do not auto-update value to prevent jitter
+                if (!isDragging) {
+                    seekbar.value = audioElement.currentTime;
+                }
+                currentTimeEl.innerText = formatTime(audioElement.currentTime);
+            });
+
+            // 3. Track End
+            audioElement.addEventListener('ended', () => {
+                isAudioPlaying = false;
+                playPauseBtn.innerHTML = "▶"; 
+                seekbar.value = 0;
+            });
+
+            // --- START PLAYBACK ---
+            audioElement.src = URL.createObjectURL(file);
+            
+            try {
+                await audioElement.play();
+                isAudioPlaying = true;
+                playPauseBtn.innerHTML = "❚❚"; 
+            } catch (err) {
+                console.warn("Autoplay blocked, user interaction required", err);
+                playPauseBtn.innerHTML = "▶";
+            }
 
             // Set up Analyser
             audioSource = audioContext.createMediaElementSource(audioElement);
@@ -561,30 +597,6 @@
 
             bufferLength = analyser.frequencyBinCount;
             dataArray = new Uint8Array(bufferLength);
-
-            // --- AUDIO EVENT LISTENERS ---
-            
-            // 1. Update Durations when metadata loads
-            audioElement.addEventListener('loadedmetadata', () => {
-                seekbar.max = audioElement.duration;
-                totalDurationEl.innerText = formatTime(audioElement.duration);
-            });
-
-            // 2. Update Seekbar and Time while playing
-            audioElement.addEventListener('timeupdate', () => {
-                if (!isAudioPlaying) return; 
-                // Only update slider value if user isn't currently dragging it could be added,
-                // but standard HTML input handles this reasonably well.
-                seekbar.value = audioElement.currentTime;
-                currentTimeEl.innerText = formatTime(audioElement.currentTime);
-            });
-
-            // 3. Handle Track End
-            audioElement.addEventListener('ended', () => {
-                isAudioPlaying = false;
-                playPauseBtn.innerHTML = "▶"; // Play icon
-                seekbar.value = 0;
-            });
 
             animate();
         });
@@ -601,7 +613,7 @@
                 playPauseBtn.innerHTML = "❚❚";
             } else {
                 audioElement.pause();
-                isAudioPlaying = false; // Stops visualizer reacting
+                isAudioPlaying = false; 
                 playPauseBtn.innerHTML = "▶";
             }
         });
@@ -612,6 +624,12 @@
             audioElement.currentTime = seekbar.value;
             currentTimeEl.innerText = formatTime(seekbar.value);
         });
+
+        // Fix: Detect drag state to prevent fighting between 'timeupdate' and user input
+        seekbar.addEventListener('mousedown', () => isDragging = true);
+        seekbar.addEventListener('mouseup', () => isDragging = false);
+        seekbar.addEventListener('touchstart', () => isDragging = true);
+        seekbar.addEventListener('touchend', () => isDragging = false);
 
         // Collapse / Expand Toggle
         let isCollapsed = false;
